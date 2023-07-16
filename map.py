@@ -24,6 +24,13 @@ st.markdown(
 
 def main():
     st.title("Retail and Manufacturing in Madison, WI")
+    
+    # Add description below the title
+    st.markdown("""
+    This interactive map displays various retail and manufacturing organizations in Madison, WI. 
+    In the left sidebar, the dropdown menus pertaining to organizational type, size, etc. can be filtered. 
+    The data table below the interactive map will reflect the filters applied.
+    """)
 
     # Read CSV data from GitHub
     url = 'https://raw.githubusercontent.com/scooter7/simap/main/List1.csv'
