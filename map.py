@@ -66,17 +66,17 @@ def main():
     # Add markers for each point
     for index, row in filtered_data.iterrows():
         tooltip = f"""
-        COMPANY: {row['COMPANY']}
-        ADDRESS: {row['ADDRESS']}
-        ZIP: {row['ZIP']}
-        CONTACT: {row['CONTACT']}
-        EMPLOYEES: {row['EMPLOYEES']}
-        SALES: {row['SALES']}
-        SIC: {row['SIC']}
-        CREDIT: {row['CREDIT']}
-        FLEET: {row['FLEET']}
+        <b>COMPANY:</b> {row['COMPANY']}<br>
+        <b>ADDRESS:</b> {row['ADDRESS']}<br>
+        <b>ZIP:</b> {row['ZIP']}<br>
+        <b>CONTACT:</b> {row['CONTACT']}<br>
+        <b>EMPLOYEES:</b> {row['EMPLOYEES']}<br>
+        <b>SALES:</b> {row['SALES']}<br>
+        <b>SIC:</b> {row['SIC']}<br>
+        <b>CREDIT:</b> {row['CREDIT']}<br>
+        <b>FLEET:</b> {row['FLEET']}
         """
-        folium.Marker([row['Lat'], row['Lon']], tooltip=tooltip).add_to(map)
+        folium.Marker([row['Lat'], row['Lon']], tooltip=tooltip, parse_html=True).add_to(map)
 
     # Set up click event to display attribute data
     map.add_child(folium.ClickForMarker(popup=None))
