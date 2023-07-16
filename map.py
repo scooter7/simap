@@ -43,6 +43,11 @@ def main():
     filters = {}
     for col in filterable_columns:
         unique_values = data[col].unique().tolist()
+        
+        # Sort sizes in ascending order
+        if col in ['EMPLOYEES', 'SALES', 'CREDIT', 'FLEET']:
+            unique_values.sort()
+        
         selected_values = st.sidebar.multiselect(f"Filter by {col}", unique_values)
         filters[col] = selected_values
 
