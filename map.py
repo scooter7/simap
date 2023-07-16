@@ -24,7 +24,7 @@ st.markdown(
 
 def main():
     st.title("Retail and Manufacturing in Madison, WI")
-    
+
     # Add description below the title
     st.markdown("""
     This interactive map displays various retail and manufacturing organizations in Madison, WI. 
@@ -65,7 +65,17 @@ def main():
 
     # Add markers for each point
     for index, row in filtered_data.iterrows():
-        tooltip = f"COMPANY: {row['COMPANY']}\nADDRESS: {row['ADDRESS']}\nZIP: {row['ZIP']}\nCONTACT: {row['CONTACT']}\nEMPLOYEES: {row['EMPLOYEES']}\nSALES: {row['SALES']}\nSIC: {row['SIC']}\nCREDIT: {row['CREDIT']}\nFLEET: {row['FLEET']}"
+        tooltip = f"""
+        COMPANY: {row['COMPANY']}
+        ADDRESS: {row['ADDRESS']}
+        ZIP: {row['ZIP']}
+        CONTACT: {row['CONTACT']}
+        EMPLOYEES: {row['EMPLOYEES']}
+        SALES: {row['SALES']}
+        SIC: {row['SIC']}
+        CREDIT: {row['CREDIT']}
+        FLEET: {row['FLEET']}
+        """
         folium.Marker([row['Lat'], row['Lon']], tooltip=tooltip).add_to(map)
 
     # Set up click event to display attribute data
