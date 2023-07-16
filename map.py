@@ -36,6 +36,43 @@ def main():
     url = 'https://raw.githubusercontent.com/scooter7/simap/main/List1.csv'
     data = pd.read_csv(url)
 
+    # Define the custom order for EMPLOYEES
+    employees_order = [
+        '5 to 9',
+        '10 to 19',
+        '20 to 49',
+        '50 to 99',
+        '100 to 249',
+        '250 to 499',
+        '500 to 999',
+        '1000 to 4999',
+        '5000 to 9999'
+    ]
+
+    # Define the custom order for SALES
+    sales_order = [
+        '$20 - 50 million',
+        '$50 - 100 million',
+        '$100 - 500 million',
+        '$500 million - $1 BILLION',
+        'OVER $1 BILLION'
+    ]
+
+    # Define the custom order for CREDIT
+    credit_order = ['I', 'B', 'B+', 'A', 'A+']
+
+    # Define the custom order for ZIP
+    zip_order = sorted(data['ZIP'].unique())
+
+    # Define the custom order for FLEET
+    fleet_order = [
+        'Unknown',
+        '1 to 10',
+        '11 to 19',
+        '20 to 49',
+        '50 to 99'
+    ]
+
     # Get the columns (excluding 'Lat' and 'Lon') and remove 'CITY' and 'STATE'
     filterable_columns = [col for col in data.columns if col not in ['Lat', 'Lon', 'CITY', 'STATE']]
 
@@ -43,11 +80,19 @@ def main():
     filters = {}
     for col in filterable_columns:
         unique_values = data[col].unique().tolist()
-        
-        # Sort sizes in ascending order
-        if col in ['EMPLOYEES', 'SALES', 'CREDIT', 'FLEET']:
-            unique_values.sort()
-        
+
+        # Apply custom order to the filter options
+        if col == 'EMPLOYEES':
+            unique_values = sorted(unique_values, key=lambda x: employees_order.index(x))
+        elif col == 'SALES':
+            unique_values = sorted(unique_values, key=lambda x: sales_order.index(x))
+        elif col == 'CREDIT':
+            unique_values = sorted(unique_values, key=lambda x: credit_order.index(x))
+        elif col == 'ZIP':
+            unique_values = sorted(unique_values, key=lambda x: zip_order.index(x))
+        elif col == 'FLEET':
+            unique_values = sorted(unique_values, key=lambda x: fleet_order.index(x))
+
         selected_values = st.sidebar.multiselect(f"Filter by {col}", unique_values)
         filters[col] = selected_values
 
