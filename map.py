@@ -51,10 +51,10 @@ def main():
 
     # Define the custom order for SALES
     sales_order = [
-        '$20 - 50 million',
-        '$50 - 100 million',
-        '$100 - 500 million',
-        '$500 million - $1 BILLION',
+        '$20 - 50 MILLION',
+        '$50 - 100 MILLION',
+        '$100 - 500 MILLION',
+        '$500 MILLION - $1 BILLION',
         'OVER $1 BILLION'
     ]
 
