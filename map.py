@@ -36,8 +36,8 @@ def main():
     url = 'https://raw.githubusercontent.com/scooter7/simap/main/List1.csv'
     data = pd.read_csv(url)
 
-    # Get the columns (excluding 'Lat' and 'Lon')
-    filterable_columns = [col for col in data.columns if col not in ['Lat', 'Lon']]
+    # Get the columns (excluding 'Lat' and 'Lon') and remove 'CITY' and 'STATE'
+    filterable_columns = [col for col in data.columns if col not in ['Lat', 'Lon', 'CITY', 'STATE']]
 
     # Filter options
     filters = {}
